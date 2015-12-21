@@ -10,8 +10,8 @@ CREATE TABLE tblSpringBoard(
 
 CREATE SEQUENCE seq_board;
 
-insert into TBLSPRINGBOARD values(seq_board.nextVal, '첫번째 글', 'aaaaa',
-	,'홍길동', sysdate, 0, '1111')
+insert into TBLSPRINGBOARD values(seq_board.nextVal, '첫번째 글', 
+	'aaaaa', '홍길동', sysdate, 0, '1111')
 	
 -- mysql
 CREATE TABLE tblSpringBoard(

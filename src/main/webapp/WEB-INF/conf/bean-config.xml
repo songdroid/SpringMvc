@@ -2,6 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<bean class="com.netsong7.board.controller.ListController"></bean>
+	
+	<bean id="boardService" class="com.netsong7.board.service.BoardServiceImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+	
+	<bean class="com.netsong7.board.controller.ListController">
+		<property name="boardService" ref="boardService"></property>	
+	</bean>
 </beans>
