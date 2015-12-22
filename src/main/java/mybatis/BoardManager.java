@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.netsong7.board.repository.BoardDto;
+
 public class BoardManager {
 	private static SqlSessionFactory sqlFactory;
 	static{
@@ -27,5 +29,25 @@ public class BoardManager {
 		SqlSession session = sqlFactory.openSession();
 		list = session.selectList("getList");
 		return list;
+	}
+	
+	public static void write(BoardDto dto){
+		SqlSession session = sqlFactory.openSession();
+		session.insert("write", dto);
+		session.commit();
+	}
+	
+	public static BoardDto findBySeq(int seq){
+		SqlSession session = sqlFactory.openSession();
+		BoardDto dto = session.selectOne("findBySeq", seq);
+		return dto;
+	}
+	
+	public static void update(BoardDto dto){
+		
+	}
+	
+	public static void delete(int seq){
+		
 	}
 }

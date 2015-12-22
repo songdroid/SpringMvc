@@ -2,7 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head><title>Insert title here</title></head>
+<head>
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"  type="text/css"/>
+	<script src="${pageContext.request.contextPath}/js/test.js" ></script>
+</head>
 <body>
 <h1>리스트 페이지</h1>
 <a href="write.board">글쓰기</a>

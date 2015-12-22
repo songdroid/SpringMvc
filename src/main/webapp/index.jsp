@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <html>
+<head>
+<link rel="stylesheet"  href="/res/style.css"  type="text/css"/>
+</head>
 <body>
 <h1>Main Page</h1>
 <ul>
