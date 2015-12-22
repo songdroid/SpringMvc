@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.netsong7.board.repository.BoardDto;
 
+import mybatis.BoardManager;
+
 public class BoardServiceImpl implements BoardService {
 	private JdbcTemplate jdbcTemplate;
 	
@@ -20,17 +22,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	public List getList() throws SQLException {
-		/*
-		List list = new ArrayList();
-		list.add("aaa");
-		list.add("aaa");
-		list.add("aaa");
-		*/
-		String sql = "select * from tblSpringBoard order by b_seq desc";
-		List<BoardDto> list = new ArrayList<BoardDto>();
-		
-		list = jdbcTemplate.query(sql, new RowMapperImpl());
-		return list;
+		return BoardManager.getList();
 	}
 	
 	class RowMapperImpl implements RowMapper{
