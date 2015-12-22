@@ -29,27 +29,29 @@ public class BoardServiceImpl implements BoardService {
 		String sql = "select * from tblSpringBoard order by b_seq desc";
 		List<BoardDto> list = new ArrayList<BoardDto>();
 		
-		RowMapper rowmap = new RowMapper(){
-			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardDto dto = new BoardDto();
-				dto.setB_content(rs.getString("b_content"));
-				dto.setB_hitcount(rs.getInt("b_hitcount"));
-				dto.setB_password(rs.getString("b_password"));
-				dto.setB_regdate(rs.getString("b_regdate"));
-				dto.setB_seq(rs.getInt("b_seq"));
-				dto.setB_title(rs.getString("b_title"));
-				dto.setB_writer(rs.getString("b_writer"));
-				return dto;
-			}			
-		};
-		
-		list = jdbcTemplate.query(sql, rowmap);
+		list = jdbcTemplate.query(sql, new RowMapperImpl());
 		return list;
 	}
+	
+	class RowMapperImpl implements RowMapper{
+		public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+			BoardDto dto = new BoardDto();
+			dto.setB_content(rs.getString("b_content"));
+			dto.setB_hitcount(rs.getInt("b_hitcount"));
+			dto.setB_password(rs.getString("b_password"));
+			dto.setB_regdate(rs.getString("b_regdate"));
+			dto.setB_seq(rs.getInt("b_seq"));
+			dto.setB_title(rs.getString("b_title"));
+			dto.setB_writer(rs.getString("b_writer"));
+			return dto;
+		}			
+	}
 
-	public BoardDto findBySeq() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public BoardDto findBySeq(int seq) throws SQLException {
+		String sql = "select * from tblSpringBoard where b_seq="+seq;
+		BoardDto dto = jdbcTemplate.queryForObject(sql, new RowMapperImpl());
+		
+		return dto;
 	}
 
 	public void write(BoardDto dto) throws SQLException {
@@ -82,13 +84,18 @@ public class BoardServiceImpl implements BoardService {
 	*/
 	
 	public void update(BoardDto dto) throws SQLException {
-		// TODO Auto-generated method stub
-
+		String sql = "update tblSpringBoard set b_title=?, b_content=? "
+				+ "where b_seq=?";
+		
+		Object[] val = new Object[]{dto.getB_title(), dto.getB_content(), 
+				dto.getB_seq()};
+		jdbcTemplate.update(sql, val);
 	}
 
 	public void delete(int seq) throws SQLException {
-		// TODO Auto-generated method stub
-
+		String sql = "delete from tblSpringBoard where b_seq=?";
+		
+		Object[] val = new Object[]{seq};
+		jdbcTemplate.update(sql, val);
 	}
-
 }

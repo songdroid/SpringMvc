@@ -14,4 +14,8 @@
 	<bean class="com.netsong7.board.controller.WriteController">
 		<property name="boardService" ref="boardService"></property>	
 	</bean>
+	
+	<bean class="com.netsong7.board.controller.ReadController">
+		<property name="boardService" ref="boardService"></property>	
+	</bean>
 </beans>
