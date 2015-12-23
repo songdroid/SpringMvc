@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2"></property>
+		
 		<property name="viewClass">
 			<value>org.springframework.web.servlet.view.JstlView</value>
 		</property>
@@ -11,5 +13,10 @@
 		<property name="prefix">
 			<value>/WEB-INF/views/</value>
 		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+		<property name="order" value="1"></property>
+		<property name="basename" value="bundleview"></property>
 	</bean>
 </beans>
