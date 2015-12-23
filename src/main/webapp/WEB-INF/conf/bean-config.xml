@@ -20,4 +20,6 @@
 	</bean>
 	
 	<bean class="com.netsong7.member.controller.RegisterController"></bean>
+	
+	<bean class="com.netsong7.member.controller.MainController"></bean>
 </beans>

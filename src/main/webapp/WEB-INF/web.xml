@@ -43,6 +43,7 @@
 				/WEB-INF/conf/handler-config.xml
 				/WEB-INF/conf/bean-config.xml
 				/WEB-INF/conf/view-config.xml
+				/WEB-INF/conf/mvc-config.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>

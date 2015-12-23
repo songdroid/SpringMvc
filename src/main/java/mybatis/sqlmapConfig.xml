@@ -8,6 +8,7 @@
  
  	<typeAliases>
  		<typeAlias type="com.netsong7.board.repository.BoardDto"  alias="BoardDto"/>
+ 		<typeAlias type="com.netsong7.member.repository.Member"  alias="Member"/>
  	</typeAliases>
  
 	<environments default="development">
@@ -32,5 +33,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="mybatis/boardMapper.xml" />
+		<mapper resource="mybatis/memberMapper.xml" />
 	</mappers>
 </configuration>
