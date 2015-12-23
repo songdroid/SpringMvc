@@ -2,6 +2,7 @@ package com.netsong7.board.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,6 +12,7 @@ import com.netsong7.board.service.BoardService;
 @Controller
 public class ListController {
 	private BoardService boardService;
+	private Logger log = Logger.getLogger(this.getClass());
 	
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
@@ -18,6 +20,7 @@ public class ListController {
 
 	@RequestMapping("/list.board")
 	public ModelAndView pageHandler(){
+		log.info("연습삼아 해보는 로깅처리");
 		ModelAndView mav = new ModelAndView("board/list.jsp");
 		try{
 			List list = boardService.getList();
