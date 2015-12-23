@@ -1,13 +1,18 @@
 package com.netsong7.member.controller;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.netsong7.exception.AlreadyExistingMemberException;
+import com.netsong7.member.repository.Member;
 import com.netsong7.member.repository.RegisterRequest;
+
+import mybatis.MemberManager;
 
 @Controller
 public class RegisterController {
@@ -38,7 +43,13 @@ public class RegisterController {
 	
 	@RequestMapping(value="/step3", method=RequestMethod.POST)
 	public String handleStep3(@ModelAttribute("mem") RegisterRequest regReq){
-		// DB가입 처리
-		return "step3";
+		try{
+			Member dto = new Member(regReq.getEmail(), regReq.getPassword(), regReq.getName(), new Date());
+			MemberManager.setRegister(dto);
+			return "step3";
+		}
+		catch(AlreadyExistingMemberException err){
+			return "step2";
+		}
 	}
 }
