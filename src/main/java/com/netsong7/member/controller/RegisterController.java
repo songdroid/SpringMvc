@@ -11,11 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.netsong7.exception.AlreadyExistingMemberException;
 import com.netsong7.member.repository.Member;
 import com.netsong7.member.repository.RegisterRequest;
+import com.netsong7.member.service.MemberService;
 
 import mybatis.MemberManager;
 
 @Controller
 public class RegisterController {
+	private MemberService memberService;
+
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	
 	@RequestMapping("/register.member")
 	public String handleStep1(){
 		return "/member/register/step1";
@@ -45,7 +52,7 @@ public class RegisterController {
 	public String handleStep3(@ModelAttribute("mem") RegisterRequest regReq){
 		try{
 			Member dto = new Member(regReq.getEmail(), regReq.getPassword(), regReq.getName(), new Date());
-			MemberManager.setRegister(dto);
+			memberService.setRegister(dto);
 			return "step3";
 		}
 		catch(AlreadyExistingMemberException err){
