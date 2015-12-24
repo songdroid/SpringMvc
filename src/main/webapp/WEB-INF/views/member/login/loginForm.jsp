@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head><title>Insert title here</title></head>
@@ -7,13 +7,13 @@
 		<p>
 			<label>
 				이메일 : <br/>
-				<input type="text" name="email" />
+				<input type="text" name="email" value="${loginCommand.email}"/>
 			</label>
 		</p>
 		<p>
 			<label>
 				패스워드 : <br/>
-				<input type="password" name="password" />
+				<input type="password" name="password"  value="${loginCommand.password }"/>
 			</label>
 		</p>
 		<p>
