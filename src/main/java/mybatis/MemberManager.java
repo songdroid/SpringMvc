@@ -28,4 +28,11 @@ public class MemberManager {
 		session.insert("setRegister", dto);
 		session.commit();
 	}
+	
+	public static Member selectByEmail(String email){
+		SqlSession session = sqlFactory.openSession();
+		Member dto = null;
+		dto = session.selectOne("selectByEmail", email);
+		return dto;
+	}
 }
